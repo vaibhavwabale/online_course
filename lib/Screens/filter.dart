@@ -35,8 +35,6 @@ class _FilterState extends State<Filter> {
                       children: [
                         InkWell(
                           onTap: () async {
-                            await Future.delayed(
-                                const Duration(milliseconds: 300));
                             Navigator.pop(context);
                           },
                           child: Ink(

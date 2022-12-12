@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:online_course/main.dart';
 
@@ -11,6 +12,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -30,12 +32,16 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   bool animation = false;
   late AnimationController controller;
+  @override
   void initState() {
+    super.initState();
     AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 100),
     ).forward().then((value) => setState(() {
-          print('ads');
+          if (kDebugMode) {
+            print('ads');
+          }
           animation = true;
         }));
   }
@@ -44,7 +50,7 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     void endcallback() {
       Navigator.push(
-          context, MaterialPageRoute(builder: (builder) => const MyApp()));
+          context, MaterialPageRoute(builder: (builder) => const MyHomePage()));
     }
 
     return Scaffold(
